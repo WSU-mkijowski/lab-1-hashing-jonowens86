@@ -21,9 +21,7 @@ Answer the following in this file:
     For 42 users: 916,132,832 × 42 = 38,477,578,944 combinations.
 * Instead of salts, if you were to use a nonce (unique number for each hashed
   field) how many possible combinations would I need to try?
-    - Each row uses a unique 5-digit nonce (range: 10000–99999), giving 90,000 possible nonces per row.
-    Since there are 1,303 rows: 90,000 × 1,303 = **117,270,000** total combinations.
-    However, because the nonce is stored with the hash, only the ID needs to be guessed — not the nonce.
+    - Each row uses a unique 5-digit nonce (range: 10000–99999), giving 90,000 possible nonces per row.Since there are 1,303 rows: 90,000 × 1,303 = 117,270,000 total combinations. However, because the nonce is stored with the hash, only the ID needs to be guessed.
 * Given the above, if this quiz data were *actual* class data, say for example
   your final exam, how would you store this dataset?  Why?
     - I would store that dataset in a secure location using file encryption. Using hashed indentifiers like sha-256 with salt. Then restrict the access to only authorized users. This will ensure unauthorized access to the dataset.
