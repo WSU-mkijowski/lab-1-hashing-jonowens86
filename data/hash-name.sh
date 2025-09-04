@@ -71,3 +71,7 @@ if [[ -z "$salted_hash" ]]; then
 
 done
 
+rm -f users.tmp salts.tmp hashes.tmp
+
+echo "Salted data file created: $OUTPUT_FILE"
+
