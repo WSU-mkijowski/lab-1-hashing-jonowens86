@@ -33,3 +33,13 @@ while read -r user; do
   echo "$user,$salt" >> salts.tmp
 done < users.tmp
 
+# Step 3: Creating the salted hashes. Hashing salt + username.
+
+rm -f hashes.tmp
+while IFS=',' read -r user salt; do
+  salted_id="${salt}${user}"
+  hash=$(printf "%s" "$salted_id" | sha256sum | awk '{print $1}')
+  salted_hash="${salt}${hash}"
+  echo "$user,$salted_hash" >> hashes.tmp
+done < salts.tmp
+ 
