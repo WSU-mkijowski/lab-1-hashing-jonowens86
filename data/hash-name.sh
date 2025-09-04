@@ -42,4 +42,10 @@ while IFS=',' read -r user salt; do
   salted_hash="${salt}${hash}"
   echo "$user,$salted_hash" >> hashes.tmp
 done < salts.tmp
- 
+
+# Step 4: Debug output for user salt and salted hashes.
+
+echo "User -> Salt -> SaltedHash mappings:"
+cat hashes.tmp
+echo ""
+
