@@ -24,3 +24,12 @@ TMP_HASHES="hashes.tmp"
 awk -F, 'NR > 1 {print $1}' "$INPUT_FILE" | sort | uniq > users.tmp
 
 
+
+# Step 2:  Generate unique 5-character salt for each user
+
+rm -f salts.tmp
+while read -r user; do
+  salt=$(cat /dev/urandom | tr -dc 'A-Za-z0-9' | head -c5)
+  echo "$user,$salt" >> salts.tmp
+done < users.tmp
+
