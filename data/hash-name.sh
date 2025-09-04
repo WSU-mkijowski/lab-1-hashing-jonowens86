@@ -75,3 +75,29 @@ rm -f users.tmp salts.tmp hashes.tmp
 
 echo "Salted data file created: $OUTPUT_FILE"
 
+
+NONCE_OUTPUT="nonce-data.csv"
+echo "Creating $NONCE_OUTPUT..."
+
+
+rm -f "$NONCE_OUTPUT"
+
+
+head -1 "$INPUT_FILE" > "$NONCE_OUTPUT"
+
+
+tail -n +2 "$INPUT_FILE" | while IFS= read -r line; do
+  id=$(echo "$line" | cut -d',' -f1)
+  rest=$(echo "$line" | cut -d',' -f2-)
+
+
+  nonce=$(shuf -i 10000-99999 -n 1)
+
+  hash=$(printf "%s%s" "$nonce" "$id" | sha256sum | awk '{print $1}')
+  final="${nonce}${hash}"
+
+  echo "${final},${rest}" >> "$NONCE_OUTPUT"
+done
+
+echo "nonce-data.csv created."
+
