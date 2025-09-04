@@ -21,5 +21,6 @@ TMP_HASHES="hashes.tmp"
 # Step 1: Extract unique user names from the first column
 
 
-awk -F, '{print $1}' "$INPUT_FILE" | sort | uniq > users.tmp
+awk -F, 'NR > 1 {print $1}' "$INPUT_FILE" | sort | uniq > users.tmp
+
 
