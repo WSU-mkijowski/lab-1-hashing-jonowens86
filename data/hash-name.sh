@@ -49,3 +49,16 @@ echo "User -> Salt -> SaltedHash mappings:"
 cat hashes.tmp
 echo ""
 
+
+# Step 5: Prepare output file with header and process data lines.
+
+head -1 "$INPUT_FILE" > "$OUTPUT_FILE"
+
+
+tail -n +2 "$INPUT_FILE" | while IFS= read -r line; do
+  user=$(echo "$line" | cut -d',' -f1)
+  rest=$(echo "$line" | cut -d',' -f2-)
+  salted_hash=$(grep "^$user," hashes.tmp | cut -d',' -f2)
+  echo "${salted_hash},${rest}" >> "$OUTPUT_FILE"
+done
+
