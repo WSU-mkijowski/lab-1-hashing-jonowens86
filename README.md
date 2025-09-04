@@ -26,7 +26,7 @@ Answer the following in this file:
     However, because the nonce is stored with the hash, only the ID needs to be guessed — not the nonce.
 * Given the above, if this quiz data were *actual* class data, say for example
   your final exam, how would you store this dataset?  Why?
-  - I would store that dataset in a secure location using file encryption. Using hashed indentifiers like sha-256 with salt. Then restrict the access to only authorized users. This will ensure unauthorized access to the dataset.
+    - I would store that dataset in a secure location using file encryption. Using hashed indentifiers like sha-256 with salt. Then restrict the access to only authorized users. This will ensure unauthorized access to the dataset.
 ```bash
 please put any cool bash one-liners or other piped commands you
 learned/struggled with for task 1 here
