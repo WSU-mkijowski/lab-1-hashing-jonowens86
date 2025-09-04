@@ -59,6 +59,15 @@ tail -n +2 "$INPUT_FILE" | while IFS= read -r line; do
   user=$(echo "$line" | cut -d',' -f1)
   rest=$(echo "$line" | cut -d',' -f2-)
   salted_hash=$(grep "^$user," hashes.tmp | cut -d',' -f2)
+
+
+if [[ -z "$salted_hash" ]]; then
+    echo "Warning: No salted hash found for user '$user', using original ID"
+    salted_hash="$user"
+  fi
+
+
   echo "${salted_hash},${rest}" >> "$OUTPUT_FILE"
+
 done
 
